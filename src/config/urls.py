@@ -15,7 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from ninja import NinjaAPI
+
+from common.ninja.parser import ORJSONParser
+from common.ninja.renderers import ORJSONRenderer
+from common.ninja.security import ApiKey
+from main import views
+
+api = NinjaAPI(
+    auth=ApiKey(),
+    csrf=False,
+    parser=ORJSONParser(),
+    renderer=ORJSONRenderer(),
+)
+
+api.add_router('/videos/', views.video_router)
+api.add_router('/', views.main_router)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api.urls),
 ]
