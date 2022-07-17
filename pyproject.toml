@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "video-uploader"
+version = "0.1.0"
+description = ""
+authors = ["Dzmitry Dankou <12ddankov12@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.0.6"
+django-ninja = "^0.19.0"
+celery = "^5.2.7"
+django-environ = "^0.9.0"
+psycopg2-binary = "^2.9.3"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+black = "^22.6.0"
+isort = "^5.10.1"
+mypy = "^0.961"
+bandit = "^1.7.4"
+django-stubs = "^1.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+skip-string-normalization = true
+include = '\.pyi?$'
+exclude = '''
+/(
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+'''
