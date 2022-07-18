@@ -19,11 +19,11 @@ class FeedSchema(BaseModel):
     date: datetime | None  # type: ignore
     page: conint(gt=1) | None  # type: ignore
 
-    @validator('date')
+    @validator('date', allow_reuse=True)
     def date_is_empty(cls, value: datetime | None) -> datetime:
         return value or timezone.now()
 
-    @validator('page')
+    @validator('page', allow_reuse=True)
     def page_is_empty(cls, value: int | None) -> int:
         return value or cls.DEFAULT_PAGE
 
@@ -37,7 +37,7 @@ class VideoSchema(BaseModel):
 
     content: conbytes(max_length=MAX_CONTENT_SIZE)  # type: ignore
 
-    @validator('page')
+    @validator('content', allow_reuse=True)
     def content_size_is_valid(cls, value: bytes) -> bytes:
         if sys.getsizeof(value) > cls.MAX_CONTENT_SIZE:
             raise ContentSizeExceededException('Content ')

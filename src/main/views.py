@@ -1,7 +1,8 @@
 from django.http import HttpRequest
 from ninja import Router
-from schemas import FeedSchema, VideoSchema
-from tasks import create_video
+
+from .schemas import FeedSchema, VideoSchema
+from .tasks import create_video
 
 main_router = Router()
 video_router = Router()
