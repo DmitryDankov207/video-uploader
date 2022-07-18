@@ -1,9 +1,10 @@
 from celery import app
 from django.utils import timezone
-from schemas import VideoSchema
 
 from common.transcoders import VideoTranscoder
 from config.celery import Queues
+
+from .schemas import VideoSchema
 
 
 @app.shared_task(queue=Queues.VIDEO_UPLOAD.value)
