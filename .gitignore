@@ -19,3 +19,6 @@ __pycache__/
 *.gif
 *.jpg
 *.txt
+
+# Docker volumes
+data/*
