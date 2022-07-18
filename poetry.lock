@@ -256,6 +256,14 @@ django = "*"
 typing-extensions = "*"
 
 [[package]]
+name = "ffmpy"
+version = "0.3.0"
+description = "A simple Python wrapper for ffmpeg"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "flake8"
 version = "4.0.1"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -562,7 +570,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "8225f84c5c56631f459cdeb479bbb6d49dd28273081d6f537df5989aef0a584e"
+content-hash = "934dbbc98d44b62e846b9d947636b2d7d3ccc46fb2e27458f5122b6d178d367f"
 
 [metadata.files]
 amqp = []
@@ -587,6 +595,7 @@ django-environ = []
 django-ninja = []
 django-stubs = []
 django-stubs-ext = []
+ffmpy = []
 flake8 = []
 gitdb = []
 gitpython = []

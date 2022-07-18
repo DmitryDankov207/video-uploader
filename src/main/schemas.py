@@ -1,7 +1,12 @@
+import sys
 from datetime import datetime
 
 from django.utils import timezone
-from pydantic import BaseModel, conint, validator
+from pydantic import BaseModel, conbytes, conint, validator
+
+
+class ContentSizeExceededException(ValueError):
+    """Raise when content size exceeds limit."""
 
 
 class FeedSchema(BaseModel):
@@ -28,4 +33,12 @@ class VideoSchema(BaseModel):
     Validate `api/upload` endpoint payload.
     """
 
-    content: bytes
+    MAX_CONTENT_SIZE = 1024 * 1024 * 7  # 7Mb
+
+    content: conbytes(max_length=MAX_CONTENT_SIZE)  # type: ignore
+
+    @validator('page')
+    def content_size_is_valid(cls, value: bytes) -> bytes:
+        if sys.getsizeof(value) > cls.MAX_CONTENT_SIZE:
+            raise ContentSizeExceededException('Content ')
+        return value
